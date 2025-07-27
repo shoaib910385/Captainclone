@@ -15,7 +15,7 @@ from Clonify.plugins.tools.clone import restart_bots
 from Clonify.core.call import Call
 
 call = Call()
-await call.start()
+     await call.start()
 
 
 # Lock for serializing session I/O
