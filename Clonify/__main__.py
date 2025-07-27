@@ -1,4 +1,3 @@
-
 import asyncio
 import importlib
 
@@ -14,12 +13,16 @@ from Clonify.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 from Clonify.plugins.tools.clone import restart_bots
 
+# Define a global lock for session I/O
+io_lock = asyncio.Lock()
 
 async def init():
     if not config.STRING1:
         LOGGER(__name__).error("String Session not filled, please provide a valid session.")
         exit()
+
     await sudo()
+
     try:
         users = await get_gbanned()
         for user_id in users:
@@ -29,14 +32,24 @@ async def init():
             BANNED_USERS.add(user_id)
     except:
         pass
-    await app.start()
+
+    async with io_lock:
+        await app.start()
+
     for all_module in ALL_MODULES:
         importlib.import_module("Clonify.plugins" + all_module)
+
     LOGGER("Clonify.plugins").info("𝐀𝐥𝐥 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬 𝐋𝐨𝐚𝐝𝐞𝐝 𝐁𝐚𝐛𝐲🥳...")
-    await userbot.start()
-    await PRO.start()
+
+    async with io_lock:
+        await userbot.start()
+
+    async with io_lock:
+        await PRO.start()
+
     try:
-        await PRO.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
+        async with io_lock:
+            await PRO.stream_call("https://te.legra.ph/file/29f784eb49d230ab62e9e.mp4")
     except NoActiveGroupCall:
         LOGGER("Clonify").error(
             "𝗣𝗹𝗭 𝗦𝗧𝗔𝗥𝗧 𝗬𝗢𝗨𝗥 𝗟𝗢𝗚 𝗚𝗥𝗢𝗨𝗣 𝗩𝗢𝗜𝗖𝗘𝗖𝗛𝗔𝗧\𝗖𝗛𝗔𝗡𝗡𝗘𝗟\n\n𝗠𝗨𝗦𝗜𝗖 𝗕𝗢𝗧 𝗦𝗧𝗢𝗣........"
@@ -44,14 +57,22 @@ async def init():
         exit()
     except:
         pass
+
     await PRO.decorators()
-    await restart_bots()
+
+    async with io_lock:
+        await restart_bots()
+
     LOGGER("Clonify").info(
         "╔═════ஜ۩۞۩ஜ════╗\n  ☠︎︎𝗠𝗔𝗗𝗘 𝗕𝗬 𝗣𝗿𝗼𝗕𝗼t𝘀☠︎︎\n╚═════ஜ۩۞۩ஜ════╝"
     )
+
     await idle()
-    await app.stop()
-    await userbot.stop()
+
+    async with io_lock:
+        await app.stop()
+        await userbot.stop()
+
     LOGGER("Clonify").info("𝗦𝗧𝗢𝗣 𝗠𝗨𝗦𝗜𝗖🎻 𝗕𝗢𝗧..")
 
 
