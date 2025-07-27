@@ -3,11 +3,16 @@ aiohttp
 apscheduler
 asyncio
 bard
-bing_image_downloader 
+stripe==10.7.0
+mysql-connector-python==9.0.0
+telebot==0.0.5
+youtube_dl==2021.12.17
+bing_image_downloader
 beautifulsoup4
 bs4
 cloudscraper
 deepai
+daxxhub
 dnspython
 emojis
 ffmpeg-python
@@ -23,8 +28,9 @@ httpx==0.27.0
 img2pdf
 instaloader
 lexica-api
-motor 
-numpy<2.0.0
+motor
+MukeshAPI
+numpy
 openai==0.28.0
 opencv-python
 pillow==9.5.0
@@ -36,9 +42,7 @@ pycryptodome
 pydub
 pyfiglet
 pykeyboard
-# pyrogram==2.0.106
-git+https://github.com/KurimuzonAkuma/pyrogram.git
-python-dotenv
+python-dotenv==1.0.1
 python-telegram-bot==21.1.1
 python-whois
 pyshorteners
@@ -55,10 +59,10 @@ speedtest-cli
 SpeechRecognition
 spotipy
 telegraph
-tgcrypto
+tgcrypto==1.2.5
 unidecode
 wget
-yt-dlp
 youtube-search
 youtube-search-python
-flask
+git+https://github.com/doraemon890/pyrogram
+git+https://github.com/yt-dlp/yt-dlp
