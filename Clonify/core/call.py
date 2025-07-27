@@ -496,8 +496,13 @@ class Call(PyTgCalls):
 
     async def start(self):
         LOGGER(__name__).info("Starting PyTgCalls Client...\n")
-        if config.STRING1:
-            await self.one.start()
+        try:
+            if config.STRING1:
+                await self.userbot1.start()
+                await self.one.start()
+        except Exception as e:
+            LOGGER(__name__).error(f"Failed to start PyTgCalls: {e}")
+            raise
 
     async def decorators(self):
         @self.one.on_kicked()
