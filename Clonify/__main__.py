@@ -13,7 +13,7 @@ from Clonify.utils.database import get_banned_users, get_gbanned
 from config import BANNED_USERS
 from Clonify.plugins.tools.clone import restart_bots
 
-# Define a global lock for session I/O
+# Lock for serializing session I/O
 io_lock = asyncio.Lock()
 
 async def init():
@@ -45,7 +45,7 @@ async def init():
         await userbot.start()
 
     async with io_lock:
-        await PRO.start()
+        await PRO.start()  # 💡 CRUCIAL: Start PyTgCalls before streaming
 
     try:
         async with io_lock:
@@ -55,8 +55,8 @@ async def init():
             "𝗣𝗹𝗭 𝗦𝗧𝗔𝗥𝗧 𝗬𝗢𝗨𝗥 𝗟𝗢𝗚 𝗚𝗥𝗢𝗨𝗣 𝗩𝗢𝗜𝗖𝗘𝗖𝗛𝗔𝗧\𝗖𝗛𝗔𝗡𝗡𝗘𝗟\n\n𝗠𝗨𝗦𝗜𝗖 𝗕𝗢𝗧 𝗦𝗧𝗢𝗣........"
         )
         exit()
-    except:
-        pass
+    except Exception as e:
+        LOGGER("Clonify").warning(f"Streaming Test Skipped: {e}")
 
     await PRO.decorators()
 
