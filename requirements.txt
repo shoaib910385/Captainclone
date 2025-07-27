@@ -42,6 +42,7 @@ pycryptodome
 pydub
 pyfiglet
 pykeyboard
+git+https://github.com/KurimuzonAkuma/pyrogram.git
 python-dotenv==1.0.1
 python-telegram-bot==21.1.1
 python-whois
