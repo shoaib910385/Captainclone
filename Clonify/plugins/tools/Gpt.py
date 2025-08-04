@@ -5,6 +5,7 @@ from pyrogram.enums import ChatAction, ParseMode
 from pyrogram import filters
 from config import API_KEY
 
+API_KEY = "190c3f41c4a66ef12053b5067e2a377c1e83ca124cf7329717ebd24c9f10f471"
 BASE_URL = "https://api.together.xyz/v1/chat/completions"
 
 @app.on_message(
