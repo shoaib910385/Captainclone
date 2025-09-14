@@ -144,7 +144,7 @@ confirmer = {}
 
 STREAMI_PICS = [
 "https://files.catbox.moe/m29rf2.mp4",
-"https://files.catbox.moe/rtsoqt.mp4",
+"https://files.catbox.moe/5qf319.mp4",
 
 ]
 
