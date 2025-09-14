@@ -69,7 +69,7 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            return await message.reply_photo(
+            return await message.reply_video(
                 random.choice(STREAMI_PICS),
                 caption=_["help_1"].format(C_SUPPORT_CHAT),
                 reply_markup=keyboard,
@@ -132,7 +132,7 @@ async def start_pm(client, message: Message, _):
         app_link = f"https://t.me/{app.username}"
 
         # out = private_panel(_)
-        await message.reply_photo(
+        await message.reply_video(
             random.choice(STREAMI_PICS),
             caption=_["c_start_2"].format(message.from_user.mention, a.mention, app_name, app_link, app_name, app_link, C_SUPPORT_CHANNEL, C_SUPPORT_CHAT),
             reply_markup=InlineKeyboardMarkup(out),
