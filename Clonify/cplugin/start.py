@@ -175,7 +175,7 @@ async def start_gp(client, message: Message, _):
                     ],
                 ]
     uptime = int(time.time() - _boot_)
-    await message.reply_photo(
+    await message.reply_video(
         random.choice(STREAMI_PICS),
         caption=_["start_1"].format(a.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
